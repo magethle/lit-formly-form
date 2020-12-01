@@ -111,13 +111,8 @@ const value = {
   'age': 41
 };
 
-export const FormlyForm = () =>
+export const Default = () =>
   html`
-    <style>
-      input:invalid, select:invalid {
-        border: 2px #a94442 solid;
-      }      
-    </style>
     <lit-formly-form .contract="${formConfig}" .value="${value}" >
     </lit-formly-form>
   `;

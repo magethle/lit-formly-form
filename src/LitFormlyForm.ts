@@ -173,6 +173,10 @@ export class LitFormlyForm extends LitElement {
     }
   }
 
+  public isValid() {
+    return Object.keys(this.errors).length == 0;
+  }
+
   private _onSubmit(e: Event) {
     this.submit()
     e.preventDefault()

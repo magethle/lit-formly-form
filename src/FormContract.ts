@@ -52,20 +52,22 @@ export interface TemplateOptions {
     pattern?: string;
     placeholder?: string;
     options?: Option[];
-    
+
     disabled?: boolean;
-    rows?: number;
-    cols?: number;
-    description?: string;
-    hidden?: boolean;
     max?: number;
     min?: number;
     minLength?: number;
     maxLength?: number;
-    tabindex?: number;
     readonly?: boolean;
-    attributes?: { [key: string]: string | number };
     step?: number;
+
+    rows?: number;
+    cols?: number;
+    description?: string;
+    hidden?: boolean;
+    tabindex?: number;
+    attributes?: { [key: string]: string | number };
+    
   
 }
 

@@ -113,9 +113,18 @@ export class FieldRenderer {
 
     protected renderInputField(field: FieldContract, value: string, set: (value:unknown)=>void, type: 'text'|'number'|'checkbox' ) {
         let setter = set;
+        let step = undefined;
         switch (type) {
-            case 'number':
-                setter = (value:unknown) => set(Number(value));
+            case 'number': {
+                setter = (value: unknown) => set(Number(value));
+                if (field.templateOptions.type==='decimal') {
+                    if (field.templateOptions.step) {
+                        step = field.templateOptions.step;
+                    } else {
+                        step = 'any';
+                    }
+                }
+            }
         }
 
         return html`
@@ -127,6 +136,7 @@ export class FieldRenderer {
               pattern="${ifDefined(field.templateOptions.pattern)}"
               min="${ifDefined(field.templateOptions.min)}"
               max="${ifDefined(field.templateOptions.max)}"
+              step="${ifDefined(step === null ? undefined : step)}"
               minlength="${ifDefined(field.templateOptions.minLength)}"
               maxlength="${ifDefined(field.templateOptions.maxLength)}"
               placeholder="${ifDefined(field.templateOptions.placeholder)}"
