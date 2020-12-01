@@ -19,3 +19,7 @@
 /_site/
 /dist/
 /out-tsc/
+
+*.js
+*.js.map
+*.d.ts

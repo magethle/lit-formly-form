@@ -1,4 +1,25 @@
 {
+  "name": "lit-formly-forms",
+  "version": "0.0.7",
+  "description": "Webcomponent lit-formly-forms following open-wc recommendations",
+  "author": "lit-formly-forms",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "dependencies": {
+    "lit-html": "^1.0.0",
+    "lit-element": "^2.0.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "/src/*.js",
+    "/src/*.js.map",
+    "/src/*.d.ts",
+    "/index.js"
+  ],
   "scripts": {
     "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .ts,.html . --fix --ignore-path .gitignore",
@@ -60,14 +81,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "name": "lit-formly-forms",
-  "version": "0.0.0",
-  "description": "Webcomponent lit-formly-forms following open-wc recommendations",
-  "author": "lit-formly-forms",
-  "license": "MIT",
-  "dependencies": {
-    "lit-html": "^1.0.0",
-    "lit-element": "^2.0.1"
   }
 }

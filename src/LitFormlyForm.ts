@@ -1,5 +1,5 @@
 import { LitElement, html, css, property } from 'lit-element';
-import { FieldRenderer } from './FieldRenderers.js';
+import { FieldRenderer } from './FieldRenderer.js';
 import { FieldContract, FormContract } from './FormContract.js';
 
 interface Model {

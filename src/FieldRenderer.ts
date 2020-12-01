@@ -4,7 +4,7 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import { repeat } from 'lit-html/directives/repeat';
 import { until } from 'lit-html/directives/until';
 import { FieldContract, Option } from './FormContract';
-export {html, repeat, until};
+//export {html, repeat, until};
 
 /**
  * Renders a field using bootstrap 3 classes
