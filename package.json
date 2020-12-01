@@ -4,6 +4,10 @@
   "description": "Webcomponent lit-formly-forms following open-wc recommendations",
   "author": "lit-formly-forms",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magethle/lit-formly-form"
+  },  
   "type": "module",
   "main": "index.js",
   "module": "index.js",
