@@ -12,9 +12,7 @@ import { Model } from './LitFormlyForm';
  */
 export class FieldRenderer {
 
-    public model: Model = {};
-
-    public renderField(field: FieldContract, value: unknown, set: (value:unknown)=>void, errorMsg: string|null = null) {
+    public renderField(field: FieldContract, value: unknown, set: (value:unknown)=>void, errorMsg: string|null = null, model: Model) {
 
         const labelTemplate = this._labelTemplate(field);
         
@@ -74,11 +72,11 @@ export class FieldRenderer {
             renderFn = this.renderTextInputField;
         }
         //@ts-ignore
-        return renderFn.bind(this)(field, value, set);
+        return renderFn.bind(this)(field, value, set, model);
     
     }
     
-    protected renderTextInputField(field: FieldContract, value: string, set: (value:unknown)=>void) {
+    protected renderTextInputField(field: FieldContract, value: string, set: (value:unknown)=>void, model: Model) {
         return this.renderInputField(field, value, set, 'text');
         // return html`
         //     <input id="${field.key}" 
@@ -94,7 +92,7 @@ export class FieldRenderer {
         //     `;
     }
 
-    protected renderNumberInputField(field: FieldContract, value: string, set: (value:unknown)=>void) {
+    protected renderNumberInputField(field: FieldContract, value: string, set: (value:unknown)=>void, model: Model) {
         return this.renderInputField(field, value, set, 'number');
         // const setNumber = (value:unknown) => set(Number(value));
 
@@ -153,7 +151,7 @@ export class FieldRenderer {
             `;
     }    
     
-    protected renderCheckboxField(field: FieldContract, value: boolean, set: (value:unknown)=>void ) {
+    protected renderCheckboxField(field: FieldContract, value: boolean, set: (value:unknown)=>void, model: Model ) {
         return html`
             <input
                 type="checkbox"
@@ -166,7 +164,7 @@ export class FieldRenderer {
             </input>`;
     }
 
-    protected renderDateField(field: FieldContract, value: string, set: (value:unknown)=>void ) {
+    protected renderDateField(field: FieldContract, value: string, set: (value:unknown)=>void, model: Model ) {
     
         return html`
             <input id="${field.key}" class="form-control"
@@ -178,7 +176,7 @@ export class FieldRenderer {
         `;
     }    
     
-    protected renderSelectField(field: FieldContract, value: string, set: (value:unknown)=>void ) {
+    protected renderSelectField(field: FieldContract, value: string, set: (value:unknown)=>void, model: Model ) {
         const options = field.templateOptions.options ?? [];
         return html`
             <select id="${field.key}" class="form-control"

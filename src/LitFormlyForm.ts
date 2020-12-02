@@ -21,18 +21,19 @@ export class LitFormlyForm extends LitElement {
   @property({ type: Array, attribute: false })
   public contract: FormContract | null = null;
 
-  private _value: Model = {};
-
   @property({ type: Object, attribute: false })
-  get value(): Model {
-    return this._value;
-  }
-  set value(val: Model) {
-    const oldValue = this._value;
-    this._value = val;
-    this.renderer.model = val;
-    this.requestUpdate('myProp', oldValue);    
-  }
+  private value: Model = {};
+
+  // private _value: Model = {};
+  // @property({ type: Object, attribute: false })
+  // get value(): Model {
+  //   return this._value;
+  // }
+  // set value(val: Model) {
+  //   const oldValue = this._value;
+  //   this._value = val;
+  //   this.requestUpdate('myProp', oldValue);    
+  // }
 
   @property({ type: Object, attribute: false })
   public renderer: FieldRenderer = new FieldRenderer(); 
@@ -71,10 +72,10 @@ export class LitFormlyForm extends LitElement {
   }
 
   protected _fieldWrapperTemplate(field: FieldContract) {
-    const value = this._getPropertyValue(field);
+    const propValue = this._getPropertyValue(field);
     const set = this._createModelValueSetter(field);
     const errorMsg = this.errors[field.key];
-    return this.renderer.renderField(field, value, set, errorMsg);
+    return this.renderer.renderField(field, propValue, set, errorMsg, this.value);
   }
 
   /**
