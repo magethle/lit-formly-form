@@ -2,7 +2,7 @@ import { LitElement, html, css, property } from 'lit-element';
 import { FieldRenderer } from './FieldRenderer.js';
 import { FieldContract, FormContract } from './FormContract.js';
 
-interface Model {
+export interface Model {
   [key: string]: unknown
 }
 
@@ -21,18 +21,22 @@ export class LitFormlyForm extends LitElement {
   @property({ type: Array, attribute: false })
   public contract: FormContract | null = null;
 
+  private _value: Model = {};
+
   @property({ type: Object, attribute: false })
-  public value: Model = {};
+  get value(): Model {
+    return this._value;
+  }
+  set value(val: Model) {
+    const oldValue = this._value;
+    this._value = val;
+    this.renderer.model = val;
+    this.requestUpdate('myProp', oldValue);    
+  }
 
   @property({ type: Object, attribute: false })
   public renderer: FieldRenderer = new FieldRenderer(); 
   
-  // @property({ type: Object, attribute: false })
-  // public getpropertyvalue: (field:FieldContract) => unknown = this._getPropertyValue;
-
-  // @property({ type: Object, attribute: false })
-  // public getPropertyValueSetter: ((field:FieldContract) => (fieldInput: unknown) => void) = this._createModelValueSetter;
-
   /** error object for all fields indexed by their id */
   private errors: {[key:string]:string} = {};
 
@@ -63,7 +67,7 @@ export class LitFormlyForm extends LitElement {
       <div class="fieldset">
         ${(c || []).map(field => this._fieldWrapperTemplate(field))}
       </div>
-    `
+    `;
   }
 
   protected _fieldWrapperTemplate(field: FieldContract) {

@@ -4,12 +4,15 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import { repeat } from 'lit-html/directives/repeat';
 import { until } from 'lit-html/directives/until';
 import { FieldContract, Option } from './FormContract';
+import { Model } from './LitFormlyForm';
 //export {html, repeat, until};
 
 /**
  * Renders a field using bootstrap 3 classes
  */
 export class FieldRenderer {
+
+    public model: Model = {};
 
     public renderField(field: FieldContract, value: unknown, set: (value:unknown)=>void, errorMsg: string|null = null) {
 
@@ -62,7 +65,7 @@ export class FieldRenderer {
         } else if (field.type==='select') {
             renderFn = this.renderSelectField;
         } else if (field.type==='remoteselect') {
-            field.templateOptions.options= [{name: 'Name', value: '1'}, {name: 'Name 2', value: '2'}, {name: 'Name 3', value: '3'},];
+            //field.templateOptions.options= [{name: 'Name', value: '1'}, {name: 'Name 2', value: '2'}, {name: 'Name 3', value: '3'},];
             renderFn = this.renderSelectField;
         } else if (field.type==='date') {
             renderFn = this.renderDateField;
@@ -75,7 +78,7 @@ export class FieldRenderer {
     
     }
     
-    protected renderTextInputField(field: FieldContract, value: string, set: (value:unknown)=>void ) {
+    protected renderTextInputField(field: FieldContract, value: string, set: (value:unknown)=>void) {
         return this.renderInputField(field, value, set, 'text');
         // return html`
         //     <input id="${field.key}" 
@@ -91,7 +94,7 @@ export class FieldRenderer {
         //     `;
     }
 
-    protected renderNumberInputField(field: FieldContract, value: string, set: (value:unknown)=>void ) {
+    protected renderNumberInputField(field: FieldContract, value: string, set: (value:unknown)=>void) {
         return this.renderInputField(field, value, set, 'number');
         // const setNumber = (value:unknown) => set(Number(value));
 
