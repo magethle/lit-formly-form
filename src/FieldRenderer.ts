@@ -16,7 +16,7 @@ export class FieldRenderer {
 
         const labelTemplate = this._labelTemplate(field);
         
-        const fieldTemplate = this._fieldTemplate(field, value, set);
+        const fieldTemplate = this._fieldTemplate(field, value, set, model);
 
         const errorClass = { 'has-error': errorMsg!=null };
     
@@ -50,7 +50,7 @@ export class FieldRenderer {
         return nothing;
     }
     
-    protected _fieldTemplate(field: FieldContract, value: unknown, set: (value:unknown)=>void ) {
+    protected _fieldTemplate(field: FieldContract, value: unknown, set: (value:unknown)=>void, model: Model ) {
         let renderFn = this.renderTextInputField;
         
          if (field.type==='input') {
