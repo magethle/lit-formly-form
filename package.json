@@ -1,14 +1,13 @@
 {
   "name": "lit-formly-forms",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Webcomponent lit-formly-forms following open-wc recommendations",
   "author": "lit-formly-forms",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/magethle/lit-formly-form"
-  },  
-  "type": "module",
+  },
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
@@ -50,6 +49,8 @@
     "@types/node": "13.11.1",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
+    "@ui5/webcomponents": "^1.0.0-rc.10",
+    "@vaadin/vaadin": "^17.0.11",
     "@web/dev-server": "^0.0.12",
     "@web/test-runner": "^0.7.41",
     "concurrently": "^5.1.0",
