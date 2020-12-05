@@ -36,10 +36,12 @@ export class LitFormlyForm extends LitElement {
   // }
 
   @property({ type: Object, attribute: false })
-  public renderer: FieldRenderer = new FieldRenderer(); 
+  public renderer: FieldRenderer = new FieldRenderer();
   
   /** error object for all fields indexed by their id */
   private errors: {[key:string]:string} = {};
+
+  private _initialValue: Model = {};
 
   protected createRenderRoot() {
       return this; //no shadow root
@@ -51,11 +53,24 @@ export class LitFormlyForm extends LitElement {
     }
 
     return html``;
+  }
+
+  protected firstUpdated(): void {
+    try {
+      this._initialValue = JSON.parse(JSON.stringify(this.value));
+    } catch (e) {
+      console.warn('Failed to serialize form value');
+    }
   }  
 
   protected _formTemplate(c: FormContract) {
+    //@change="${this.formValueUpdated}"
+    //@formchange=${(e:Event)=>console.log(e)}
+    //@invalid=${(e:Event)=>console.log(e)}
+    //@forminput=${(e:Event)=>console.log(e)}    
     return html`
-      <form @change="${this.formValueUpdated}"
+      <form 
+          @input=${this.formValueUpdated}
           @submit="${this._onSubmit}">
           ${this._fieldsetTemplate(c)}
       </form>
@@ -119,6 +134,14 @@ export class LitFormlyForm extends LitElement {
     // }
 
     return value;
+  }  
+
+  /**
+   * Reset to initial value
+   */
+  public async reset() {
+    this.value = this._initialValue;
+    await this.requestUpdate();
   }  
 
 
