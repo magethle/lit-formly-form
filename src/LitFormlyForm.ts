@@ -155,7 +155,7 @@ export class LitFormlyForm extends LitElement {
     )
   }
   
-  async formValueUpdated(e: { target: HTMLInputElement }) {
+  async formValueUpdated(e: { target: (HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement) }) {
     const input = e.target;
     if (input.id) {
       console.log('Updated input', input.id);
@@ -174,6 +174,7 @@ export class LitFormlyForm extends LitElement {
         //input.setCustomValidity('Pattern mismatch!');
         this.requestUpdate();
       }
+      this.dispatchEvent(new CustomEvent('formvalidation', {detail: {errors: this.errors}}))
     }
   }
 
