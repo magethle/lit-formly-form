@@ -22,18 +22,19 @@ export class LitFormlyForm extends LitElement {
   public contract: FormContract | null = null;
 
   @property({ type: Object, attribute: false })
-  private value: Model = {};
+  private _value: Model = {};
 
-  // private _value: Model = {};
-  // @property({ type: Object, attribute: false })
-  // get value(): Model {
-  //   return this._value;
-  // }
-  // set value(val: Model) {
-  //   const oldValue = this._value;
-  //   this._value = val;
-  //   this.requestUpdate('myProp', oldValue);    
-  // }
+  get value(): Model {
+     return this._value;
+  }
+
+  set value(val: Model) {
+     //reset errors on model change
+     this.errors = {};
+     const oldValue = this._value;
+     this._value = val;
+     this.requestUpdate('myProp', oldValue);
+  }
 
   @property({ type: Object, attribute: false })
   public renderer: FieldRenderer = new FieldRenderer();
@@ -174,7 +175,7 @@ export class LitFormlyForm extends LitElement {
         //input.setCustomValidity('Pattern mismatch!');
         this.requestUpdate();
       }
-      this.dispatchEvent(new CustomEvent('formvalidation', {detail: {errors: this.errors}}))
+      this.dispatchEvent(new CustomEvent('formvalidation', {detail: {errors: this.errors}, bubbles: true, composed: true}))
     }
   }
 
