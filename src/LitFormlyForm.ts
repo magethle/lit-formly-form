@@ -33,7 +33,7 @@ export class LitFormlyForm extends LitElement {
      this.errors = {};
      const oldValue = this._value;
      this._value = val;
-     this.requestUpdate('myProp', oldValue);
+     this.requestUpdate('value', oldValue);
   }
 
   @property({ type: Object, attribute: false })

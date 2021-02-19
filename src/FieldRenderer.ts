@@ -14,9 +14,9 @@ export class FieldRenderer {
 
     public renderField(field: FieldContract, value: unknown, set: (value:unknown)=>void, errorMsg: string|null = null, model: Model) {
 
-        const labelTemplate = this._labelTemplate(field);
+        const labelTemplate = this.labelTemplate(field);
         
-        const fieldTemplate = this._fieldTemplate(field, value, set, model);
+        const fieldTemplate = this.fieldTemplate(field, value, set, model);
 
         const errorClass = { 'has-error': errorMsg!=null };
     
@@ -29,7 +29,7 @@ export class FieldRenderer {
         `;
       }
     
-    protected _labelTemplate(field: FieldContract) {
+    public labelTemplate(field: FieldContract) {
         const requiredMark = field.templateOptions.required ? '*' : '';
         return html`
             <label class="control-label" for="${field.key}">
@@ -50,7 +50,7 @@ export class FieldRenderer {
         return nothing;
     }
     
-    protected _fieldTemplate(field: FieldContract, value: unknown, set: (value:unknown)=>void, model: Model ) {
+    public fieldTemplate(field: FieldContract, value: unknown, set: (value:unknown)=>void, model: Model ) {
         let renderFn = this.renderTextInputField;
         
          if (field.type==='input') {
@@ -62,9 +62,9 @@ export class FieldRenderer {
              renderFn = this.renderCheckboxField;
         } else if (field.type==='select') {
             renderFn = this.renderSelectField;
-        } else if (field.type==='remoteselect') {
+        /*} else if (field.type==='remoteselect') {
             //field.templateOptions.options= [{name: 'Name', value: '1'}, {name: 'Name 2', value: '2'}, {name: 'Name 3', value: '3'},];
-            renderFn = this.renderSelectField;
+            renderFn = this.renderSelectField; */
         } else if (field.type==='date') {
             renderFn = this.renderDateField;
         } else {
