@@ -17,5 +17,5 @@
     "rootDir": "./"
   },
   "include": ["**/*.ts"],
-  "exclude": [ "test"]
+  "exclude": [ ]
 }
