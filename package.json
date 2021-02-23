@@ -52,7 +52,7 @@
     "@ui5/webcomponents": "^1.0.0-rc.12",
     "@vaadin/vaadin": "^18.0.6",
     "@web/dev-server": "^0.1.8",
-    "@web/test-runner": "^0.7.41",
+    "@web/test-runner": "^0.12.15",
     "concurrently": "^5.1.0",
     "deepmerge": "^4.2.2",
     "eslint": "^6.1.0",
