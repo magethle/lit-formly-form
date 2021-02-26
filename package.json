@@ -1,6 +1,6 @@
 {
   "name": "lit-formly-forms",
-  "version": "0.0.19",
+  "version": "0.0.21",
   "description": "Webcomponent lit-formly-forms following open-wc recommendations",
   "author": "lit-formly-forms",
   "license": "MIT",

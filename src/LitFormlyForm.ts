@@ -161,31 +161,10 @@ export class LitFormlyForm extends LitElement {
     const input = e.target;
     if (input.id) {
       console.log('Updated input', input.id);
-      /*const validity = input.validity;
-      const valid = validity.valid;
-      
-      if (valid) {
-        //clear previous error (if any)
-        if (this.errors[input.id]) {
-          delete this.errors[input.id];
-          this.requestUpdate();
-        }
-      } else {
-        console.log(`Field ${input.id} invalid`, validity);
-        const errorMsg = this.getErrorMessage(validity);
-        this.errors[input.id] = errorMsg;
-        //input.setCustomValidity('Pattern mismatch!');
-        this.requestUpdate();
-      }*/
-
       const valid = this.validate(input);
-      this.requestUpdate();
-
-      this.dispatchEvent(new CustomEvent('formvalidation', {detail: {errors: this.errors}, bubbles: true, composed: true}))
     }
   }
 
-  //TODO
   validate(el: HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement) {
     const validity = el.validity;
     const valid = validity.valid;
@@ -200,6 +179,10 @@ export class LitFormlyForm extends LitElement {
       this.errors[el.id] = errorMsg;
       //el.setCustomValidity('Pattern mismatch!');
     }
+    
+    this.dispatchEvent(new CustomEvent('formvalidation', {detail: {errors: this.errors}, bubbles: true, composed: true}));
+    this.requestUpdate();
+
     return valid; 
   }
 
