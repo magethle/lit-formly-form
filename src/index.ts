@@ -1,3 +1,3 @@
-//export {FormContract} from './FormContract.js';
-export {FieldRenderer} from './FieldRenderer.js';
-export {LitFormlyForm} from './LitFormlyForm.js';
+export * from './FormContract';
+export {FieldRenderer} from './FieldRenderer';
+export {LitFormlyForm} from './LitFormlyForm';

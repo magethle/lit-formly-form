@@ -10,12 +10,12 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "outDir": "./",
+    "outDir": "./build",
     "sourceMap": true,
     "inlineSources": true,
     "declaration": true,
     "rootDir": "./"
   },
   "include": ["**/*.ts"],
-  "exclude": [ ]
+  "exclude": ["build" ]
 }
