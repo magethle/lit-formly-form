@@ -36,7 +36,7 @@
     "start:build": "npm run build && web-dev-server --root-dir build --app-index index.html --open --compatibility none",
     "start": "concurrently --kill-others --names tsc,web-dev-server \"npm run tsc:watch\" \"web-dev-server --app-index index.html --node-resolve --open --watch\"",
     "tsc:watch": "tsc --watch",
-    "wca": "wca analyze 'src/**/*.{js,ts}' --outFile custom-elements.json && wca analyze 'src/**/*.{js,ts}' --format markdown --outFile custom-elements.md",
+    "wca": "wca analyze 'src/**/*.{js,ts}' --outFile custom-elements.json",
     "npm-publish": "npm i && npm run build && npm publish"
   },
   "devDependencies": {

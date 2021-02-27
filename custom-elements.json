@@ -1,0 +1,32 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "lit-formly-form",
+      "path": "./src\\lit-formly-form.ts",
+      "properties": [
+        {
+          "name": "contract",
+          "type": "FormContract | null"
+        },
+        {
+          "name": "value",
+          "type": "Model"
+        },
+        {
+          "name": "renderer",
+          "type": "FieldRenderer",
+          "default": "\"new FieldRenderer()\""
+        }
+      ],
+      "events": [
+        {
+          "name": "submit"
+        },
+        {
+          "name": "formvalidation"
+        }
+      ]
+    }
+  ]
+}
