@@ -2,9 +2,25 @@ import { LitElement, html, css, property } from 'lit-element';
 import { FieldRenderer } from './FieldRenderer.js';
 import { FieldContract, FormContract } from './FormContract.js';
 
-export interface Model {
+export interface GenericModel {
+  get(name: string): unknown;
+  set(name: string, value: unknown): void;
+}
+
+export interface ObjectModel {
   [key: string]: unknown
 }
+
+export type Model = GenericModel | ObjectModel;
+
+function isGenericModel(model: GenericModel | ObjectModel): model is GenericModel {
+  const gm = (model as GenericModel);
+  return isFunction(gm.get) && isFunction(gm.set);
+}
+
+function isFunction(fn: Function) {
+  return fn && {}.toString.call(fn) === '[object Function]';
+ }
 
 export class LitFormlyForm extends LitElement {
   // static styles = css`
@@ -107,15 +123,31 @@ export class LitFormlyForm extends LitElement {
       // }
       newValue = this.wrapFieldValue(field, newValue);
 
-      if (this.value[field.key] !== newValue) {
-        console.log(`Setting value ${newValue} (old value ${this.value[field.key]})`);
-        this.value[field.key] = newValue;
+      if (this._getModelValue(field.key) !== newValue) {
+        console.log(`Setting value ${newValue} (old value ${this._getModelValue(field.key)})`);
+        this._setModelValue(field.key, newValue);
         //this.validate(this.querySelector(`#${field.key}`) as HTMLInputElement);
 
         this.requestUpdate();
       }
     }
   }
+
+  protected _getModelValue(name: string) {
+    if (isGenericModel(this.value)) {
+      return this.value.get(name);
+    } else {
+      return this.value[name];
+    }
+  }
+
+  protected _setModelValue(name: string, value: unknown) {
+    if (isGenericModel(this.value)) {
+      this.value.set(name, value);
+    } else {
+      this.value[name] = value;
+    }
+  }  
 
   protected unwrapFieldValue(field: FieldContract, value: unknown) {
     return value;
@@ -126,7 +158,7 @@ export class LitFormlyForm extends LitElement {
   }
 
   protected _getPropertyValue(field: FieldContract) {
-    let value = this.value[field.key] || null;
+    let value = this._getModelValue(field.key) || null;
 
     value = this.unwrapFieldValue(field, value);
 
