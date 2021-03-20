@@ -194,6 +194,7 @@ function renderOption(value: string) {
     <option
         value="${option.value}"
         ?selected="${option.value === value}"
-        label="${option.name}"
-    ></option>`;
+        label="${option.name}">
+        ${option.name}
+    </option>`;
 }
