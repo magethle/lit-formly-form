@@ -158,7 +158,7 @@ export class LitFormlyForm extends LitElement {
   }
 
   protected _getPropertyValue(field: FieldContract) {
-    let value = this._getModelValue(field.key) || null;
+    let value = this._getModelValue(field.key);
 
     value = this.unwrapFieldValue(field, value);
 
