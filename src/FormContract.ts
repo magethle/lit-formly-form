@@ -20,7 +20,7 @@ export interface FieldContract {
     /**
      * This should be a formly-field type added either by you or a plugin. More information over at Creating Formly Fields.
      */
-    type: 'input'|'date'|'number'|'user'|'remoteselect'|'remoteselect-autocomplete'|'select'|'checkbox'; //checkbox, select not used by our API
+    type: 'input'|'date'|'number'|'user'|'remoteselect'|'remoteselect-autocomplete'|'select'|'datalist'|'checkbox'; //checkbox, select not used by our API
 
     /**
      * This is reserved for the templates. Any template-specific options go in here. Look at your specific template implementation to know the options required for this.

@@ -62,6 +62,8 @@ export class FieldRenderer {
              renderFn = this.renderCheckboxField;
         } else if (field.type==='select') {
             renderFn = this.renderSelectField;
+        } else if (field.type==='datalist') {
+            renderFn = this.renderDataListField;
         /*} else if (field.type==='remoteselect') {
             //field.templateOptions.options= [{name: 'Name', value: '1'}, {name: 'Name 2', value: '2'}, {name: 'Name 3', value: '3'},];
             renderFn = this.renderSelectField; */
@@ -182,19 +184,42 @@ export class FieldRenderer {
             <select id="${field.key}" class="form-control"
                 @change="${(e: Event & any) => set(e.target.value)}"
                 ?required="${field.templateOptions.required}">
-                ${repeat(options, renderOption(value))}
+                ${repeat(options, this.renderOption(value))}
             </select>
         `;
     }
 
+    /**
+     * Render a <input> field using a <datalist> element
+     * @param {*} field 
+     * @param {*} value 
+     * @param {*} set 
+     * @param {*} model 
+     * @returns 
+     */
+    protected renderDataListField(field: FieldContract, value: string, set: (value:unknown)=>void, model: Model ) {
+        const options = field.templateOptions.options ?? [];
+        return html`
+            <input class="form-control" id=${field.key} name=${field.key} 
+                list="${field.key}-datalist" ?required=${field.templateOptions.required}
+                @input=${ (e: Event & any) => set(e.target.value)} autocomplete="off">
+            </input>            
+            <datalist id="${field.key}-datalist">
+                ${repeat(options, this.renderOption(value))}
+            </datalist>            
+        `;
+    } 
+    
+    protected renderOption(value: string) {
+        return (option: Option) => html`
+        <option
+            value="${option.value}"
+            ?selected="${option.value === value}"
+            label="${option.name}">
+            ${option.name}
+        </option>`;
+    }    
+
 }
 
-function renderOption(value: string) {
-    return (option: Option) => html`
-    <option
-        value="${option.value}"
-        ?selected="${option.value === value}"
-        label="${option.name}">
-        ${option.name}
-    </option>`;
-}
+
