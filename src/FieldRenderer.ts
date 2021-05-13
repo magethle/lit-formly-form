@@ -173,7 +173,7 @@ export class FieldRenderer {
                 type="date"
                 .value="${value||''}"
                 @change="${(e: Event & any) => set(e.target.value)}"
-                ?required="${field.templateOptions.required}">
+                placeholder="YYYY-MM-DD">
             </input>
         `;
     }    
