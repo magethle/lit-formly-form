@@ -171,8 +171,11 @@ export class FieldRenderer {
         return html`
             <input id="${field.key}" class="form-control"
                 type="date"
-                .value="${value||''}"
+                .value="${value}"
                 @change="${(e: Event & any) => set(e.target.value)}"
+                ?required="${field.templateOptions.required}"
+                ?disabled="${field.templateOptions.disabled}"
+                ?readonly="${field.templateOptions.readonly}"
                 placeholder="YYYY-MM-DD">
             </input>
         `;
