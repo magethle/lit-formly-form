@@ -48,7 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
     "@ui5/webcomponents": "^1.0.0-rc.12",
-    "@vaadin/vaadin": "^19.0.0",
+    "@vaadin/vaadin": "^20.0.1",
     "@web/dev-server": "^0.1.8",
     "@web/test-runner": "^0.13.0",
     "concurrently": "^6.0.0",
