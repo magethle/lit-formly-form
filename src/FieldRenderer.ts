@@ -186,7 +186,9 @@ export class FieldRenderer {
         return html`
             <select id="${field.key}" class="form-control"
                 @change="${(e: Event & any) => set(e.target.value)}"
-                ?required="${field.templateOptions.required}">
+                ?required="${field.templateOptions.required}"
+                ?disabled="${field.templateOptions.disabled}"
+                ?readonly="${field.templateOptions.readonly}">
                 ${repeat(options, this.renderOption(value))}
             </select>
         `;
@@ -204,7 +206,10 @@ export class FieldRenderer {
         const options = field.templateOptions.options ?? [];
         return html`
             <input class="form-control" id=${field.key} name=${field.key} 
-                list="${field.key}-datalist" ?required=${field.templateOptions.required}
+                list="${field.key}-datalist" 
+                ?required=${field.templateOptions.required}
+                ?disabled="${field.templateOptions.disabled}"
+                ?readonly="${field.templateOptions.readonly}"
                 @input=${ (e: Event & any) => set(e.target.value)} autocomplete="off">
             </input>            
             <datalist id="${field.key}-datalist">
