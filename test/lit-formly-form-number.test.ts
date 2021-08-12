@@ -13,10 +13,11 @@ describe('LitFormlyForm', () => {
       {
           id: "age",
           key: "age",
-          type: "number",
+          type: "input",
           templateOptions: {
             label: "Age", 
-            required: true
+            required: true,
+            type: 'integer'
           }
       }
     ];

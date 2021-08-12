@@ -54,12 +54,16 @@ export class FieldRenderer {
         let renderFn = this.renderTextInputField;
         
          if (field.type==='input') {
-            renderFn = this.renderTextInputField;
-         } else if (field.type==='number') {
-            renderFn = this.renderNumberInputField;
-         } else if (field.type==='checkbox') {   
-             //@ts-ignore     
-             renderFn = this.renderCheckboxField;
+            if (['decimal', 'integer', 'long', 'double'].indexOf(field.templateOptions.type||'')>=0) {
+                renderFn = this.renderNumberInputField;
+            } else {
+                renderFn = this.renderTextInputField;
+            }
+        //  } else if (field.type==='number') {
+        //     renderFn = this.renderNumberInputField;
+        } else if (field.type==='checkbox') {   
+            //@ts-ignore     
+            renderFn = this.renderCheckboxField;
         } else if (field.type==='select') {
             renderFn = this.renderSelectField;
         } else if (field.type==='datalist') {

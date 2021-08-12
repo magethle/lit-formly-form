@@ -11,7 +11,7 @@ const formConfig: FormContract = [
 {
     id: 'age',
     key: 'age',
-    type: 'number',
+    type: 'input',
     templateOptions: {
       type: 'integer', 
       label: "Integer <= 45", 
@@ -21,7 +21,7 @@ const formConfig: FormContract = [
   }, {
     id: 'decimal',
     key: 'decimal',
-    type: 'number',
+    type: 'input',
     templateOptions: {
       type: 'decimal', 
       label: "Decimal", 

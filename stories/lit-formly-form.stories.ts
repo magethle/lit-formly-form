@@ -6,6 +6,16 @@ export default {
   title: 'lit-formly-form',
 };
 
+const countries = [{ name: 'Italy', value:'1'}, { name: 'Germany', value:'2'}, {name: 'Czech Republic', value: '0'},
+          { name: 'Austria', value:'3'}, { name: 'Switzerland', value:'4'}, 
+          { name: 'France', value:'5'}, { name: 'Spain', value:'6'},
+          { name: 'Italy', value:'1'}, { name: 'Germany', value:'2'}, {name: 'Czech Republic', value: '0'},
+          { name: 'Austria', value:'3'}, { name: 'Switzerland', value:'4'}, 
+          { name: 'France', value:'5'}, { name: 'Spain', value:'6'},
+          { name: 'Italy', value:'1'}, { name: 'Germany', value:'2'}, {name: 'Czech Republic', value: '0'},
+          { name: 'Austria', value:'3'}, { name: 'Switzerland', value:'4'}, 
+          { name: 'France', value:'5'}, { name: 'Spain', value:'6'}                  
+        ];
 
 const formConfig: FormContract = [
   {
@@ -24,9 +34,7 @@ const formConfig: FormContract = [
     templateOptions: {
       type: "string", 
       label: "Country", 
-      options: [{ name: 'Italy', value:'1'}, { name: 'Germany', value:'2'}, {name: 'Czech Republic', value: '0'},
-          { name: 'Austria', value:'3'}, { name: 'Switzerland', value:'4'}, 
-          { name: 'France', value:'5'}, { name: 'Spain', value:'6'}], 
+      options: countries, 
       required: false
     }
   }, {
@@ -73,7 +81,7 @@ const formConfig: FormContract = [
   }, {
     id: 'age',
     key: 'age',
-    type: 'number',
+    type: 'input',
     templateOptions: {
       type: 'integer', 
       label: "Age <= 45", 
@@ -115,4 +123,15 @@ export const Default = () =>
   html`
     <lit-formly-form .contract="${formConfig}" .value="${value}" >
     </lit-formly-form>
+
+    <label for="myBrowser">Gib einen Browsernamen ein:</label>
+    <input list="browsers" id="myBrowser" name="myBrowser" @input=${ (e:Event) => console.log('Input', e)} autocomplete="off" />
+    <datalist id="browsers">
+      ${countries.map( c => html`
+        <option value=${c.name} data-value=${c.value} 
+          @keydown=${(e:Event) => console.log('keydown', e)}
+          @input=${(e:Event) => console.log('input', e)}
+          @click=${(e:Event) => console.log('click', e)}>
+        </option>>` )}
+   </datalist>    
   `;
