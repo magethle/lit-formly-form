@@ -123,7 +123,14 @@ export class FieldRenderer {
         let step = undefined;
         switch (type) {
             case 'number': {
-                setter = (value: unknown) => set(Number(value));
+                setter = (value: unknown) => {
+                    if (value) {
+                        //Number("") becomes 0 etc
+                        set(Number(value));
+                    } else {
+                        set(null);
+                    }
+                };
                 if (field.templateOptions.type==='decimal') {
                     if (field.templateOptions.step) {
                         step = field.templateOptions.step;
