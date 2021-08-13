@@ -181,7 +181,21 @@ export class FieldRenderer {
     }
 
     protected renderDateField(field: FieldContract, value: string, set: (value:unknown)=>void, model: Model ) {
-    
+    //date + delete field: not implemented as not needed
+    //         <div class="input-group">
+    //             <input id="${field.key}" class="form-control" style="padding:13px 0px;"
+    //                 type="date"
+    //                 .value="${value}"
+    //                 @input="${e => set(e.target.value)}"
+    //                 ?required="${field.templateOptions.required}"
+    //                 ?disabled="${field.templateOptions.disabled}"
+    //                 ?readonly="${field.templateOptions.readonly}"
+    //                 placeholder="YYYY-MM-DD">
+    //             </input>
+    //             <span class="input-group-addon" @click=${e => set(null)}>
+    //                 <i class="fa fa-remove" aria-hidden="true"></i>
+    //             </span>                
+    //         </div>    
         return html`
             <input id="${field.key}" class="form-control"
                 type="date"
