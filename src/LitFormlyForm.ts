@@ -20,7 +20,19 @@ function isGenericModel(model: GenericModel | ObjectModel): model is GenericMode
 
 function isFunction(fn: Function) {
   return fn && {}.toString.call(fn) === '[object Function]';
- }
+}
+
+export function isNumberField(field: FieldContract) {
+  const numberTypes = ['decimal', 'double', 'integer', 'long'];
+  //@ts-ignore
+  return numberTypes.includes(field.templateOptions.type);
+}
+
+export function isDateField(field: FieldContract) {
+  const dateTypes = ['date', 'timestamp'];
+  //@ts-ignore
+  return dateTypes.includes(field.templateOptions.type);
+}
 
 export class LitFormlyForm extends LitElement {
   // static styles = css`
@@ -218,7 +230,7 @@ export class LitFormlyForm extends LitElement {
     return valid; 
   }
 
-  public getErrorMessage(validity: ValidityState) {
+  public getErrorMessage(validity: ValidityState): string {
     if (validity.patternMismatch) {
       return 'Pattern mismatch!';
     } else if (validity.valueMissing) {
