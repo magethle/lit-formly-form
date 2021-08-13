@@ -141,12 +141,15 @@ export class FieldRenderer {
             }
         }
 
+        // value should already contain value to show to user (done in LitFormlyForm.unwrapFieldValue)
+        // otherwise override it
+        // Previoulsy I used .value="${value||''}" but didn't work for number 0 etc
         return html`
             <input id="${field.key}" 
               type="${type}" 
               class="form-control"  
               name="${field.key}"
-              .value="${value||''}"
+              .value="${value}"
               pattern="${ifDefined(field.templateOptions.pattern)}"
               min="${ifDefined(field.templateOptions.min)}"
               max="${ifDefined(field.templateOptions.max)}"

@@ -161,11 +161,44 @@ export class LitFormlyForm extends LitElement {
     }
   }  
 
+  /**
+   * Return value to show on UI
+   * @param field 
+   * @param value 
+   * @returns 
+   */
   protected unwrapFieldValue(field: FieldContract, value: unknown) {
+    if (isNumberField(field)) {
+      return value;
+    } 
+    
+    if (value===null || value===undefined) {
+        return '';
+    }
     return value;
   }
 
+  /**
+   * Return value to write on model
+   * @param field 
+   * @param value 
+   * @returns 
+   */
   protected wrapFieldValue(field: FieldContract, value: unknown) {
+    if (isNumberField(field)) {
+        if (typeof value == 'undefined') {
+          return null;
+      }
+      //from empty <input type="number"> field
+      if (value===null) {
+          return null;
+      }
+      if (value==="") {
+          //from empty option <option></option>
+          return null;
+      }
+      return Number(value);
+    }
     return value;
   }
 
