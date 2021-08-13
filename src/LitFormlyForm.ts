@@ -34,6 +34,10 @@ export function isDateField(field: FieldContract) {
   return dateTypes.includes(field.templateOptions.type);
 }
 
+function isUndefined(value: any): boolean {
+  return typeof value === 'undefined';
+}
+
 export class LitFormlyForm extends LitElement {
   // static styles = css`
   //     :host {
@@ -172,7 +176,7 @@ export class LitFormlyForm extends LitElement {
       return value;
     } 
     
-    if (value===null || value===undefined) {
+    if (value===null || isUndefined(value)) {
         return '';
     }
     return value;
@@ -186,7 +190,7 @@ export class LitFormlyForm extends LitElement {
    */
   protected wrapFieldValue(field: FieldContract, value: unknown) {
     if (isNumberField(field)) {
-        if (typeof value == 'undefined') {
+        if (isUndefined(value)) {
           return null;
       }
       //from empty <input type="number"> field
