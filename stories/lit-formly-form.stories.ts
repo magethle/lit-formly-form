@@ -1,4 +1,4 @@
-import { html } from 'lit-html';
+import { html } from 'lit';
 import { FormContract } from '../src/FormContract.js';
 import '../src/lit-formly-form.js';
 

@@ -1,10 +1,10 @@
 # lit-formly-forms
-An implementation of Angular Formly with web-components (lit-element)
+An implementation of Angular Formly with web-components (lit)
 
 ## Installation
 
 ``` bash
-npm i lit-formly-forms lit-html lit-element
+npm i lit-formly-forms lit
 ```
 
 ## Form definition
