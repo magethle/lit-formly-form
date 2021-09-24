@@ -1,4 +1,5 @@
-import { LitElement, html, css, property } from 'lit-element';
+import { LitElement, html, css } from 'lit';
+import { property} from 'lit/decorators.js';
 import { FieldRenderer } from './FieldRenderer.js';
 import { FieldContract, FormContract } from './FormContract.js';
 

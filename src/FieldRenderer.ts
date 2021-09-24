@@ -1,8 +1,8 @@
-import { html, nothing } from 'lit-html';
-import { classMap } from 'lit-html/directives/class-map';
-import { ifDefined } from 'lit-html/directives/if-defined';
-import { repeat } from 'lit-html/directives/repeat';
-import { until } from 'lit-html/directives/until';
+import { html, nothing } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { repeat } from 'lit/directives/repeat.js';
+import { until } from 'lit/directives/until.js';
 import { FieldContract, Option } from './FormContract';
 import { Model } from './LitFormlyForm';
 //export {html, repeat, until};
