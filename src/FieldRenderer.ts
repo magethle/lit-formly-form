@@ -214,6 +214,7 @@ export class FieldRenderer {
         return html`
             <select id="${field.key}" class="form-control"
                 @change="${(e: Event & any) => set(e.target.value)}"
+                @input="${(e: Event & any) => set(e.target.value)}"
                 ?required="${field.templateOptions.required}"
                 ?disabled="${field.templateOptions.disabled}"
                 ?readonly="${field.templateOptions.readonly}">
