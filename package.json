@@ -1,6 +1,6 @@
 {
   "name": "lit-formly-forms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Webcomponent lit-formly-forms following open-wc recommendations",
   "author": "lit-formly-forms",
   "license": "MIT",
@@ -21,12 +21,6 @@
     "/build/src/*.{js,js.map,d.ts}"
   ],
   "scripts": {
-    "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
-    "format:eslint": "eslint --ext .ts,.html . --fix --ignore-path .gitignore",
-    "lint:prettier": "prettier \"**/*.js\" \"**/*.ts\" --check --ignore-path .gitignore",
-    "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
-    "format": "npm run format:eslint && npm run format:prettier",
     "test": "tsc && web-test-runner --coverage",
     "test:watch": "web-test-runner --watch",
     "storybook": "concurrently --kill-others --names tsc,storybook \"npm run tsc:watch\" \"start-storybook --node-resolve --watch --open\"",
@@ -52,7 +46,6 @@
     "deepmerge": "^4.2.2",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
-    "husky": "^7.0.1",
     "lint-staged": "^11.0.0",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
@@ -60,27 +53,5 @@
     "tslib": "^2.1.0",
     "typescript": "^4.0.7",
     "web-component-analyzer": "^1.1.6"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@open-wc/eslint-config",
-      "eslint-config-prettier"
-    ]
-  },
-  "prettier": {
-    "singleQuote": true,
-    "arrowParens": "avoid"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
-    ]
   }
 }
