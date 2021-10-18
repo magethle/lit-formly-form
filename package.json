@@ -35,7 +35,7 @@
   "devDependencies": {
     "@open-wc/building-rollup": "^1.0.0",
     "@open-wc/demoing-storybook": "^2.0.0",
-    "@open-wc/eslint-config": "^4.2.0",
+    "@open-wc/eslint-config": "^6.0.0",
     "@open-wc/testing": "^2.0.0",
     "@types/node": "16.6.2",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
